@@ -31,6 +31,8 @@ public class AudioRecorderModule extends ReactContextBaseJavaModule implements
         MediaRecorder.OnInfoListener, MediaRecorder.OnErrorListener {
     private static final String LOG_TAG = "AudioRecorderModule";
 
+    public static final String NAME = "AudioRecorder";
+
     Map<Integer, MediaRecorder> recorderPool = new HashMap<>();
     Map<Integer, Boolean> recorderAutoDestroy = new HashMap<>();
 
@@ -48,7 +50,7 @@ public class AudioRecorderModule extends ReactContextBaseJavaModule implements
 
     @Override
     public String getName() {
-        return "RCTAudioRecorder";
+        return NAME;
     }
 
     private void emitEvent(Integer recorderId, String event, WritableMap data) {

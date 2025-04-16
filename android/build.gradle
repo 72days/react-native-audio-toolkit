@@ -1,11 +1,11 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:4.2.2'
     }
 }
 
@@ -15,25 +15,31 @@ def getExtOrDefault(name, fallback) {
 
 apply plugin: 'com.android.library'
 
+def isNewArchitectureEnabled() {
+    return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
+}
+
 android {
-    compileSdkVersion getExtOrDefault('compileSdkVersion', 28)
-    buildToolsVersion getExtOrDefault('buildToolsVersion', "28.0.3")
+    compileSdkVersion getExtOrDefault('compileSdkVersion', 31)
+    buildToolsVersion getExtOrDefault('buildToolsVersion', "31.0.0")
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion getExtOrDefault('targetSdkVersion', 28)
+        minSdkVersion 21
+        targetSdkVersion getExtOrDefault('targetSdkVersion', 31)
+        
+        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString())
     }
-    lintOptions{
+    
+    lintOptions {
         abortOnError false
     }
 }
 
 repositories {
     google()
-    jcenter()
     mavenCentral()
 }
 
 dependencies {
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "com.facebook.react:react-native:+"
 }

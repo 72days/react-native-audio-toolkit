@@ -23,7 +23,6 @@ import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
-import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import java.io.IOException;
 import java.io.File;
@@ -36,6 +35,8 @@ public class AudioPlayerModule extends ReactContextBaseJavaModule implements Med
         MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnSeekCompleteListener,
         MediaPlayer.OnBufferingUpdateListener, LifecycleEventListener, AudioManager.OnAudioFocusChangeListener {
     private static final String LOG_TAG = "AudioPlayerModule";
+
+    public static final String NAME = "AudioPlayer";
 
     Map<Integer, MediaPlayer> playerPool = new HashMap<>();
     Map<Integer, Boolean> playerAutoDestroy = new HashMap<>();
@@ -100,7 +101,7 @@ public class AudioPlayerModule extends ReactContextBaseJavaModule implements Med
 
     @Override
     public String getName() {
-        return "RCTAudioPlayer";
+        return NAME;
     }
 
     private void emitEvent(Integer playerId, String event, WritableMap data) {
