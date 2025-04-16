@@ -24,6 +24,8 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+
 import java.io.IOException;
 import java.io.File;
 import java.lang.Thread;
